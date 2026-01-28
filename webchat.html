@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Prueba Web Chat CXone</title>
+</head>
+<body>
+
+<h1>Prueba Web Chat CXone</h1>
+
+<script>
+(function(n,u){
+  window.CXoneDfo=n;
+  window[n]=window[n]||function(){(window[n].q=window[n].q||[]).push(arguments)};
+  var e=document.createElement("script");
+  e.type="module";
+  e.src=u+"?"+Math.round(Date.now()/1e3/3600);
+  document.head.appendChild(e);
+})('cxone','https://web-modules-de-na1.niceincontact.com/loader/1/loader.js');
+
+cxone('init', '5780'); 
+
+cxone('chat', 'init', {
+  channelId: 'chat_04f60b11-39ce-4953-8fbd-1102f8119245' 
+});
+
+cxone('chat', 'open');
+</script>
+</body>
+</html>
