@@ -13,6 +13,12 @@ document.head.appendChild(e)
 
 cxone('init', '5780');
 cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
+
+cxone('setCustomAttributes', {
+    agentName: "Agente Vnet",
+    representativeName: "Agente Vnet"
+});
+
 </script>
 <style>
   #cxone-guide-container > div > div > div.entrypoint.svelte-mffmc3.simpleMode.useBiggerImage > button > div > img {
@@ -22,21 +28,6 @@ cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
     margin: -72px !important;
     margin-bottom: 24px !important;
   }
-  /* Oculta el nombre real del agente en las burbujas de chat */
-.cx-message-sender-name {
-    visibility: hidden;
-    position: relative;
-}
-
-/* Inserta el nombre genérico en su lugar */
-.cx-message-sender-name::after {
-    content: "Agente Vnet";
-    visibility: visible;
-    position: absolute;
-    left: 0;
-    top: 0;
-    white-space: nowrap;
-}
   </style>
 </head>
 <body>
