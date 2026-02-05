@@ -14,20 +14,6 @@ document.head.appendChild(e)
 cxone('init', '5780');
 cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
 
-// Función para cambiar el nombre cuando aparezca en pantalla
-const cambiarNombreVero = () => {
-    const selector = "#be-messenger > div > div.Header_Header__Z9Z4k.Header_HeaderDraggable__W22Nu > div.UserProfile_UserProfile__YWMXp > div.UserProfile_NameStatus__hyVK5 > div.UserProfile_Name__yNOQ-";
-    const elementoNombre = document.querySelector(selector);
-    
-    if (elementoNombre) {
-        elementoNombre.textContent = "Agente Vnet"; // Aquí pones el nombre que desees
-    }
-};
-
-// Como el chat tarda un poco en cargar, revisamos cada segundo si ya apareció
-const monitor Chat = setInterval(() => {
-    cambiarNombreVero();
-}, 1000);
 
 </script>
 <style>
