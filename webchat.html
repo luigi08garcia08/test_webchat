@@ -27,39 +27,47 @@ cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
 <h1>Prueba Web Chat CXone</h1>
 
 <script>
-console.log("🔍 Iniciando búsqueda continua del elemento...");
+console.log("🔍 Esperando que el usuario abra el chat...");
 
-const selector = ".UserProfile_Name__yNOQ-";
-
-let intentos = 0;
-
-const intervalo = setInterval(function() {
-  intentos++;
+// Observar cambios en TODO el documento para detectar cuando se abre el chat
+const observer = new MutationObserver(function(mutations) {
   
-  if (intentos % 10 === 0) { // Mostrar log cada 10 intentos (5 segundos)
-    console.log("🔄 Intento", intentos, "- Buscando elemento...");
-  }
+  // Buscar el elemento del nombre cada vez que hay un cambio
+  const elemento = document.querySelector("[class*='UserProfile_Name']");
   
-  const elemento = document.querySelector(selector);
-  
-  if (elemento) {
-    console.log("✅ ¡Elemento encontrado en el intento", intentos, "!");
+  if (elemento && elemento.textContent.trim() !== "Agente Vnet") {
+    console.log("✅ ¡Chat abierto! Elemento encontrado");
     console.log("📝 Texto original:", elemento.textContent);
+    console.log("🏷️ Clase del elemento:", elemento.className);
     
     elemento.textContent = "Agente Vnet";
     
     console.log("✨ Texto cambiado a:", elemento.textContent);
-    console.log("🎉 Proceso completado exitosamente");
     
-    clearInterval(intervalo);
+    // NO desconectar el observer para que siga funcionando si se cierra y abre el chat
+    // observer.disconnect();
   }
-}, 500); // Intenta cada 500ms
+});
 
-// Opcional: para depuración, buscar elementos parciales
-setTimeout(function() {
-  console.log("--- Debug: Buscando elementos parciales ---");
-  console.log("UserProfile_Name__yNOQ-", document.querySelector(".UserProfile_Name__yNOQ-"));
-}, 3000);
+// Observar cambios en todo el body
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  characterData: true
+});
+
+console.log("👀 Observer activo - esperando que se abra el chat...");
+console.log("💡 Abre el chat haciendo clic en el botón flotante");
+
+// Verificación adicional cada segundo
+setInterval(function() {
+  const elemento = document.querySelector("[class*='UserProfile_Name']");
+  if (elemento && elemento.textContent.trim() !== "Agente Vnet") {
+    console.log("🔄 Corrigiendo nombre...");
+    elemento.textContent = "Agente Vnet";
+  }
+}, 1000);
 </script>
 
 </body>
