@@ -27,52 +27,41 @@ cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
 <h1>Prueba Web Chat CXone</h1>
 
 <script>
-console.log("Esperando que CXone cargue el elemento...");
+console.log("🔍 Iniciando MutationObserver para buscar elemento...");
 
-// Función para esperar a que el elemento aparezca
-function esperarElementoCXone(selector, callback, timeout = 10000) {
-  const startTime = Date.now();
-  
-  // Verificar si ya existe
-  const elementoExistente = document.querySelector(selector);
-  if (elementoExistente) {
-    console.log("✅ Elemento encontrado inmediatamente");
-    callback(elementoExistente);
-    return;
-  }
-  
-  // Crear observer para esperar a que aparezca
-  const observer = new MutationObserver(function(mutations) {
-    const elemento = document.querySelector(selector);
-    
-    if (elemento) {
-      console.log("✅ Elemento encontrado por MutationObserver");
-      callback(elemento);
-      observer.disconnect();
-    } else if (Date.now() - startTime > timeout) {
-      console.log("❌ Timeout: elemento no encontrado después de", timeout/1000, "segundos");
-      observer.disconnect();
-    }
-  });
-  
-  // Observar cambios en todo el documento
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-  
-  console.log("Observer iniciado, esperando elemento...");
-}
-
-// Selector del elemento
 const selector = "#be-messenger > div > div.Header_Header_Z9Z4k.Header_HeaderDraggableW22Nu > div.UserProfile_UserProfileYWMXp > div.UserProfile_NameStatushyVK5 > div.UserProfile_Name_yNOQ-";
 
-// Esperar y cambiar el texto
-esperarElementoCXone(selector, function(elemento) {
-  console.log("Texto original:", elemento.textContent);
-  elemento.textContent = "Agente Vnet";
-  console.log("Texto cambiado a:", elemento.textContent);
+const observer = new MutationObserver(function(mutations) {
+  const elemento = document.querySelector(selector);
+  
+  if (elemento) {
+    console.log("✅ ¡Elemento encontrado!");
+    console.log("📝 Texto original:", elemento.textContent);
+    
+    elemento.textContent = "Agente Vnet";
+    
+    console.log("✨ Texto cambiado a:", elemento.textContent);
+    console.log("🎉 Proceso completado");
+    
+    observer.disconnect();
+  }
 });
+
+observer.observe(document.documentElement, {
+  childList: true,
+  subtree: true
+});
+
+console.log("👀 Observer activo, esperando cambios en el DOM...");
+
+// Verificación periódica adicional
+let contador = 0;
+const verificador = setInterval(function() {
+  contador++;
+  if (contador % 10 === 0) {
+    console.log("⏱️ Segundos transcurridos:", contador * 0.5);
+  }
+}, 500);
 </script>
 
 </body>
