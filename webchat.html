@@ -33,7 +33,7 @@ console.log("🔍 Esperando que el usuario abra el chat...");
 const observer = new MutationObserver(function(mutations) {
   
   // Buscar el elemento del nombre cada vez que hay un cambio
-  const elemento = document.querySelector("[class*='UserProfile_Name']");
+  const elemento = document.querySelector(".UserProfile_Name__yNOQ-");
   
   if (elemento && elemento.textContent.trim() !== "Agente Vnet") {
     console.log("✅ ¡Chat abierto! Elemento encontrado");
@@ -62,12 +62,13 @@ console.log("💡 Abre el chat haciendo clic en el botón flotante");
 
 // Verificación adicional cada segundo
 setInterval(function() {
-  const elemento = document.querySelector("[class*='UserProfile_Name']");
+  const elemento = document.querySelector(".UserProfile_Name__yNOQ-");
   if (elemento && elemento.textContent.trim() !== "Agente Vnet") {
     console.log("🔄 Corrigiendo nombre...");
     elemento.textContent = "Agente Vnet";
   }
 }, 1000);
+
 </script>
 
 </body>
