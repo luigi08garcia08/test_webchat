@@ -27,41 +27,41 @@ cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
 <h1>Prueba Web Chat CXone</h1>
 
 <script>
-console.log("🔍 Iniciando MutationObserver para buscar elemento...");
+console.log("🔍 Iniciando búsqueda continua del elemento...");
 
 const selector = "#be-messenger > div > div.Header_Header_Z9Z4k.Header_HeaderDraggableW22Nu > div.UserProfile_UserProfileYWMXp > div.UserProfile_NameStatushyVK5 > div.UserProfile_Name_yNOQ-";
 
-const observer = new MutationObserver(function(mutations) {
+let intentos = 0;
+
+const intervalo = setInterval(function() {
+  intentos++;
+  
+  if (intentos % 10 === 0) { // Mostrar log cada 10 intentos (5 segundos)
+    console.log("🔄 Intento", intentos, "- Buscando elemento...");
+  }
+  
   const elemento = document.querySelector(selector);
   
   if (elemento) {
-    console.log("✅ ¡Elemento encontrado!");
+    console.log("✅ ¡Elemento encontrado en el intento", intentos, "!");
     console.log("📝 Texto original:", elemento.textContent);
     
     elemento.textContent = "Agente Vnet";
     
     console.log("✨ Texto cambiado a:", elemento.textContent);
-    console.log("🎉 Proceso completado");
+    console.log("🎉 Proceso completado exitosamente");
     
-    observer.disconnect();
+    clearInterval(intervalo);
   }
-});
+}, 500); // Intenta cada 500ms
 
-observer.observe(document.documentElement, {
-  childList: true,
-  subtree: true
-});
-
-console.log("👀 Observer activo, esperando cambios en el DOM...");
-
-// Verificación periódica adicional
-let contador = 0;
-const verificador = setInterval(function() {
-  contador++;
-  if (contador % 10 === 0) {
-    console.log("⏱️ Segundos transcurridos:", contador * 0.5);
-  }
-}, 500);
+// Opcional: para depuración, buscar elementos parciales
+setTimeout(function() {
+  console.log("--- Debug: Buscando elementos parciales ---");
+  console.log("#be-messenger:", document.querySelector("#be-messenger"));
+  console.log(".Header_Header_Z9Z4k:", document.querySelector(".Header_Header_Z9Z4k"));
+  console.log(".UserProfile_Name_yNOQ-:", document.querySelector(".UserProfile_Name_yNOQ-"));
+}, 3000);
 </script>
 
 </body>
