@@ -29,7 +29,7 @@ cxone('guide','init', { templateId: 'f50687d0-c50e-4750-8cf9-38b87a703db0' });
 <script>
 console.log("🔍 Iniciando búsqueda continua del elemento...");
 
-const selector = "#be-messenger > div > div.Header_Header_Z9Z4k.Header_HeaderDraggableW22Nu > div.UserProfile_UserProfileYWMXp > div.UserProfile_NameStatushyVK5 > div.UserProfile_Name_yNOQ-";
+const selector = "UserProfile_Name__yNOQ-";
 
 let intentos = 0;
 
@@ -58,9 +58,7 @@ const intervalo = setInterval(function() {
 // Opcional: para depuración, buscar elementos parciales
 setTimeout(function() {
   console.log("--- Debug: Buscando elementos parciales ---");
-  console.log("#be-messenger:", document.querySelector("#be-messenger"));
-  console.log(".Header_Header_Z9Z4k:", document.querySelector(".Header_Header_Z9Z4k"));
-  console.log(".UserProfile_Name_yNOQ-:", document.querySelector(".UserProfile_Name_yNOQ-"));
+  console.log("UserProfile_Name__yNOQ-", document.querySelector(".UserProfile_Name__yNOQ-"));
 }, 3000);
 </script>
 
